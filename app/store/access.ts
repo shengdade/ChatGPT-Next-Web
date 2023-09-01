@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { useAuthStore } from ".";
 import { DEFAULT_API_HOST, DEFAULT_MODELS, StoreKey } from "../constant";
 import { getHeaders } from "../client/api";
 import { BOT_HELLO } from "./chat";
@@ -57,12 +58,7 @@ export const useAccessStore = create<AccessControlStore>()(
         set(() => ({ openaiUrl: url?.trim() }));
       },
       isAuthorized() {
-        get().fetch();
-
-        // has token or has code or disabled access control
-        return (
-          !!get().token || !!get().accessCode || !get().enabledAccessControl()
-        );
+        return useAuthStore.getState().isAuthorized;
       },
       fetch() {
         if (fetchState > 0 || getClientConfig()?.buildMode === "export") return;
@@ -70,9 +66,6 @@ export const useAccessStore = create<AccessControlStore>()(
         fetch("/api/config", {
           method: "post",
           body: null,
-          headers: {
-            ...getHeaders(),
-          },
         })
           .then((res) => res.json())
           .then((res: DangerConfig) => {

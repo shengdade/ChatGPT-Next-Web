@@ -9,12 +9,13 @@ import ChatGptIcon from "../icons/chatgpt.svg";
 import AddIcon from "../icons/add.svg";
 import CloseIcon from "../icons/close.svg";
 import MaskIcon from "../icons/mask.svg";
+import ReturnIcon from "../icons/return.svg";
 import PluginIcon from "../icons/plugin.svg";
 import DragIcon from "../icons/drag.svg";
 
 import Locale from "../locales";
 
-import { useAppConfig, useChatStore } from "../store";
+import { useAppConfig, useChatStore, useAuthStore } from "../store";
 
 import {
   MAX_SIDEBAR_WIDTH,
@@ -28,6 +29,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMobileScreen } from "../utils";
 import dynamic from "next/dynamic";
 import { showConfirm, showToast } from "./ui-lib";
+import { Auth } from "aws-amplify";
+
+async function signOut() {
+  try {
+    await Auth.signOut();
+    showToast(Locale.Auth.SignOutSuccess);
+  } catch (error) {
+    console.log("error signing out: ", error);
+  }
+}
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
@@ -106,6 +117,7 @@ export function SideBar(props: { className?: string }) {
   // drag side bar
   const { onDragMouseDown, shouldNarrow } = useDragSideBar();
   const navigate = useNavigate();
+  const authStore = useAuthStore();
   const config = useAppConfig();
 
   useHotKey();
@@ -173,11 +185,17 @@ export function SideBar(props: { className?: string }) {
               <IconButton icon={<SettingsIcon />} shadow />
             </Link>
           </div>
-          <div className={styles["sidebar-action"]}>
-            <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
-              <IconButton icon={<GithubIcon />} shadow />
-            </a>
-          </div>
+          {authStore.isAuthorized && (
+            <div className={styles["sidebar-action"]}>
+              <IconButton
+                icon={<ReturnIcon />}
+                onClick={() => {
+                  if (confirm(Locale.Auth.SignOutConfirm)) signOut();
+                }}
+                shadow
+              />
+            </div>
+          )}
         </div>
         <div>
           <IconButton

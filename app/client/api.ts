@@ -1,6 +1,7 @@
 import { getClientConfig } from "../config/client";
 import { ACCESS_CODE_PREFIX } from "../constant";
 import { ChatMessage, ModelType, useAccessStore } from "../store";
+import { getIdToken } from "./auth";
 import { ChatGPTApi } from "./platforms/openai";
 
 export const ROLES = ["system", "user", "assistant"] as const;
@@ -125,18 +126,21 @@ export class ClientApi {
 
 export const api = new ClientApi();
 
-export function getHeaders() {
+export async function getHeaders() {
   const accessStore = useAccessStore.getState();
   let headers: Record<string, string> = {
     "Content-Type": "application/json",
     "x-requested-with": "XMLHttpRequest",
   };
 
+  const idToken = await getIdToken();
   const makeBearer = (token: string) => `Bearer ${token.trim()}`;
   const validString = (x: string) => x && x.length > 0;
 
-  // use user's api key first
-  if (validString(accessStore.token)) {
+  // use idToken if available
+  if (validString(idToken)) {
+    headers.Authorization = makeBearer(idToken);
+  } else if (validString(accessStore.token)) {
     headers.Authorization = makeBearer(accessStore.token);
   } else if (
     accessStore.enabledAccessControl() &&

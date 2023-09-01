@@ -84,7 +84,7 @@ export class ChatGPTApi implements LLMApi {
         method: "POST",
         body: JSON.stringify(requestPayload),
         signal: controller.signal,
-        headers: getHeaders(),
+        headers: await getHeaders(),
       };
 
       // make a fetch request
@@ -205,12 +205,12 @@ export class ChatGPTApi implements LLMApi {
         ),
         {
           method: "GET",
-          headers: getHeaders(),
+          headers: await getHeaders(),
         },
       ),
       fetch(this.path(OpenaiPath.SubsPath), {
         method: "GET",
-        headers: getHeaders(),
+        headers: await getHeaders(),
       }),
     ]);
 
@@ -260,7 +260,7 @@ export class ChatGPTApi implements LLMApi {
     const res = await fetch(this.path(OpenaiPath.ListModelPath), {
       method: "GET",
       headers: {
-        ...getHeaders(),
+        ...(await getHeaders()),
       },
     });
 

@@ -5,7 +5,30 @@ const ru: PartialLocaleType = {
   WIP: "Скоро...",
   Error: {
     Unauthorized:
-      "Несанкционированный доступ. Пожалуйста, введите код доступа на [странице](/#/auth) настроек.",
+      "Доступ запрещен, пожалуйста, войдите в систему через страницу настроек.",
+  },
+  Auth: {
+    Email: "Эл. адрес:",
+    EnterEmail: "Введите эл. адрес",
+    Password: "Пароль:",
+    EnterPassword: "Введите пароль",
+    ResetPassword: "Сбросить пароль",
+    ResetPasswordSuccess: "Пароль успешно сброшен",
+    VerificationCode: "Код подтверждения:",
+    EnterVerificationCode: "Введите код подтверждения",
+    SignIn: "Войти",
+    SignInSuccess: "Вход успешный",
+    SignUp: "Зарегистрироваться",
+    SignUpSuccess: "Регистрация успешна",
+    ForgotPassword: "Забыли пароль?",
+    NeedAccount: "Нет аккаунта?",
+    HaveAccount: "Уже есть аккаунт?",
+    CheckEmailForCode:
+      "Проверьте свою электронную почту для получения кода подтверждения",
+    ResendCode: "Отправить повторно",
+    ConfirmCode: "Подтвердить",
+    SignOutConfirm: "Вы уверены, что хотите выйти?",
+    SignOutSuccess: "Выход успешный",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} сообщений`,

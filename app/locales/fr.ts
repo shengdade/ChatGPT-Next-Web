@@ -5,7 +5,30 @@ const fr: PartialLocaleType = {
   WIP: "Prochainement...",
   Error: {
     Unauthorized:
-      "Accès non autorisé, veuillez saisir le code d'accès dans la [page](/#/auth) des paramètres.",
+      "Accès non autorisé, veuillez vous connecter via la page [paramètres](/#/settings).",
+  },
+  Auth: {
+    Email: "E-mail :",
+    EnterEmail: "Entrez votre e-mail",
+    Password: "Mot de passe :",
+    EnterPassword: "Entrez votre mot de passe",
+    ResetPassword: "Réinitialiser le mot de passe",
+    ResetPasswordSuccess: "Réinitialisation du mot de passe réussie",
+    VerificationCode: "Code de vérification :",
+    EnterVerificationCode: "Entrez le code de vérification",
+    SignIn: "Se connecter",
+    SignInSuccess: "Connexion réussie",
+    SignUp: "S'inscrire",
+    SignUpSuccess: "Inscription réussie",
+    ForgotPassword: "Mot de passe oublié ?",
+    NeedAccount: "Vous n'avez pas de compte ?",
+    HaveAccount: "Vous avez déjà un compte ?",
+    CheckEmailForCode:
+      "Vérifiez votre e-mail pour obtenir le code de vérification",
+    ResendCode: "Renvoyer",
+    ConfirmCode: "Confirmer",
+    SignOutConfirm: "Êtes-vous sûr de vouloir vous déconnecter ?",
+    SignOutSuccess: "Déconnexion réussie",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} messages en total`,

@@ -6,9 +6,7 @@ const isApp = !!getClientConfig()?.isApp;
 const cn = {
   WIP: "该功能仍在开发中……",
   Error: {
-    Unauthorized: isApp
-      ? "检测到无效 API Key，请前往[设置](/#/settings)页检查 API Key 是否配置正确。"
-      : "访问密码不正确或为空，请前往[登录](/#/auth)页输入正确的访问密码，或者在[设置](/#/settings)页填入你自己的 OpenAI API Key。",
+    Unauthorized: "未授权访问，请通过[设置](/#/settings)页面登录。",
   },
   Auth: {
     Title: "需要密码",
@@ -16,6 +14,26 @@ const cn = {
     Input: "在此处填写访问码",
     Confirm: "确认",
     Later: "稍后再说",
+    Email: "邮箱：",
+    EnterEmail: "输入邮箱",
+    Password: "密码：",
+    EnterPassword: "输入密码",
+    ResetPassword: "重设密码",
+    ResetPasswordSuccess: "密码重置成功",
+    VerificationCode: "验证码：",
+    EnterVerificationCode: "输入验证码",
+    SignIn: "登录",
+    SignInSuccess: "登录成功",
+    SignUp: "注册",
+    SignUpSuccess: "注册成功",
+    ForgotPassword: "忘记密码？",
+    NeedAccount: "还没有账户？",
+    HaveAccount: "已经有账户？",
+    CheckEmailForCode: "查收电子邮件以获取验证码",
+    ResendCode: "重发",
+    ConfirmCode: "确认",
+    SignOutConfirm: "确定要退出吗？",
+    SignOutSuccess: "退出成功",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,

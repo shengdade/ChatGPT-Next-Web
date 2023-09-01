@@ -4,6 +4,7 @@ import { OpenaiPath } from "@/app/constant";
 import { prettyObject } from "@/app/utils/format";
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "../../auth";
+import { authenticate } from "../../authenticate";
 import { requestOpenai } from "../../common";
 
 const ALLOWD_PATH = new Set(Object.values(OpenaiPath));
@@ -45,7 +46,7 @@ async function handle(
     );
   }
 
-  const authResult = auth(req);
+  const authResult = await authenticate(req);
   if (authResult.error) {
     return NextResponse.json(authResult, {
       status: 401,

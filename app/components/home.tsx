@@ -25,6 +25,7 @@ import {
 } from "react-router-dom";
 import { SideBar } from "./sidebar";
 import { useAppConfig } from "../store/config";
+import { Authenticator } from "./authenticator";
 import { AuthPage } from "./auth";
 import { getClientConfig } from "../config/client";
 import { api } from "../client/api";
@@ -194,6 +195,7 @@ export function Home() {
     <ErrorBoundary>
       <Router>
         <Screen />
+        <Authenticator />
       </Router>
     </ErrorBoundary>
   );

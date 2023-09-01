@@ -29,6 +29,7 @@ import {
   Theme,
   useUpdateStore,
   useAccessStore,
+  useAuthStore,
   useAppConfig,
 } from "../store";
 
@@ -353,6 +354,7 @@ export function Settings() {
   }
 
   const accessStore = useAccessStore();
+  const authStore = useAuthStore();
   const enabledAccessControl = useMemo(
     () => accessStore.enabledAccessControl(),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -369,6 +371,12 @@ export function Settings() {
     // checks per minutes
     checkUpdate();
     showUsage && checkUsage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    // open auth modal if not authorized
+    if (!authStore.isAuthorized) authStore.openAuthModal();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

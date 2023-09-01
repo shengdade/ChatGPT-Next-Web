@@ -8,9 +8,8 @@ const isApp = !!getClientConfig()?.isApp;
 const en: LocaleType = {
   WIP: "Coming Soon...",
   Error: {
-    Unauthorized: isApp
-      ? "Invalid API Key, please check it in [Settings](/#/settings) page."
-      : "Unauthorized access, please enter access code in [auth](/#/auth) page, or enter your OpenAI API Key.",
+    Unauthorized:
+      "Unauthorized access, please log in via the [settings](/#/settings) page.",
   },
   Auth: {
     Title: "Need Access Code",
@@ -18,6 +17,26 @@ const en: LocaleType = {
     Input: "access code",
     Confirm: "Confirm",
     Later: "Later",
+    Email: "Email:",
+    EnterEmail: "Enter email",
+    Password: "Password:",
+    EnterPassword: "Enter password",
+    ResetPassword: "Reset password",
+    ResetPasswordSuccess: "Password reset successful",
+    VerificationCode: "Verification code:",
+    EnterVerificationCode: "Enter verification code",
+    SignIn: "Sign in",
+    SignInSuccess: "Sign in successful",
+    SignUp: "Sign up",
+    SignUpSuccess: "Sign up successful",
+    ForgotPassword: "Forgot password?",
+    NeedAccount: "Don't have an account?",
+    HaveAccount: "Already have an account?",
+    CheckEmailForCode: "Check your email for the verification code",
+    ResendCode: "Resend",
+    ConfirmCode: "Confirm",
+    SignOutConfirm: "Are you sure you want to sign out?",
+    SignOutSuccess: "Sign out successful",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} messages`,

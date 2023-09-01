@@ -1,0 +1,63 @@
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  // override global styles
+  input[type="password"] {
+    max-width: 100%;
+    padding: 10px;
+  }
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+}
+
+.auth-label {
+  font-weight: regular;
+}
+
+.auth-input {
+  border: var(--border-in-light);
+  border-radius: 10px;
+  padding: 10px;
+  font-family: inherit;
+  background-color: var(--white);
+  color: var(--black);
+  resize: none;
+}
+
+.anchor {
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.forgot-password {
+  @extend .anchor;
+  font-size: 0.8rem;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: var(--bar-color);
+  margin: 8px 0;
+}
+
+.error-message {
+  background-color: var(--gray);
+  color: var(--black);
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 16px;
+}
